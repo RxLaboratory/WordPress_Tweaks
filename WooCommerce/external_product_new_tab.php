@@ -1,3 +1,5 @@
+<?php
+
 // Target _blank on external woocommerce products (product lists/categories)
 function wc_extenal_in_new_tab($args, $product) 
 {
@@ -39,3 +41,4 @@ function wc_external_product_block_in_new_tab( $html, $data, $product ) {
     return $html;
 }
 add_filter( 'woocommerce_blocks_product_grid_item_html', 'wc_external_product_block_in_new_tab', 10, 3 );
+
