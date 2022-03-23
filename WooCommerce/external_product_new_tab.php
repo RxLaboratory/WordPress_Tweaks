@@ -35,9 +35,11 @@ add_action( 'woocommerce_external_add_to_cart', 'wc_extenal_individual_in_new_ta
 
 // Target _blank on external woocommerce products (gutenberg blocks)
 function wc_external_product_block_in_new_tab( $html, $data, $product ) {
-	$html = str_replace('rel="nofollow"', '', $html);
-	$html = str_replace('target="_blank"', '', $html);
-	$html = str_replace('<a', '<a target="_blank" rel="nofollow"', $html);
+    if( $product->is_type('external') ) {
+        $html = str_replace('rel="nofollow"', '', $html);
+        $html = str_replace('target="_blank"', '', $html);
+        $html = str_replace('<a', '<a target="_blank" rel="nofollow"', $html);
+    }
     return $html;
 }
 add_filter( 'woocommerce_blocks_product_grid_item_html', 'wc_external_product_block_in_new_tab', 10, 3 );
